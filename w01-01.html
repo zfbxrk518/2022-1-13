@@ -6,7 +6,7 @@
 
 		<title>The Web in General - 202200113</title>
 
-		<meta name="description" content="A general discussion of how the web works and what makes it go.">
+		<meta name="description" content="Node.js">
 		<meta name="author" content="John D. Martin III">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,77 +51,77 @@
         <section data-auto-animate>
 					<h2 data-id="code-title">Hello, world.</h2>
 					<pre data-id="code-animation"><code class="bash" data-trim data-line-numbers>
-						$ node -e 'console.log("Hello, world.")
-            'Hello, world.
+$ node -e 'console.log("Hello, world.")
+'Hello, world.
 					</code></pre>
 				</section>
         
         <section data-auto-animate>
 					<h2 data-id="code-title">Hello, world.</h2>
 					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
-						const hello = "Hello, world."
-            console.log(hello)
+const hello = "Hello, world."
+console.log(hello)
 					</code></pre>
 				</section>
         
         <section data-auto-animate>
 					<h2 data-id="code-title">package.json</h2>
 					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
-						{
-              "name": "my-own-private-web-server",
-              "version": "0.0.1",
-              "description": "This package contains a very simple web server that takes one argument for port and then serves index.html in the www directory.",
-              "main": "server.js",
-              "scripts": {
-                "test": "node server.js",
-                "start": "node server.js"
-              },
-              "author": "John D. Martin III",
-              "license": "GPL-3.0-or-later",
-              "dependencies": {
-                "minimist": "^1.2.5"
-              }
-            }
+{
+	"name": "my-own-private-web-server",
+        "version": "0.0.1",
+        "description": "This package contains a very simple web server that takes one argument for port and then serves index.html in the www directory.",
+        "main": "server.js",
+        "scripts": {
+              "test": "node server.js",
+              "start": "node server.js"
+        },
+        "author": "John D. Martin III",
+        "license": "GPL-3.0-or-later",
+        "dependencies": {
+            "minimist": "^1.2.5"
+        }
+}
 					</code></pre>
 				</section>
         
         <section data-auto-animate>
 					<h2 data-id="code-title">const</h2>
 					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
-						const http = require('http')
-            const fs = require('fs')
-            const args = require('minimist')(process.argv.slice(2))
+const http = require('http')
+const fs = require('fs')
+const args = require('minimist')(process.argv.slice(2))
 					</code></pre>
 				</section>
         
         <section data-auto-animate>
 					<h2 data-id="code-title">Arrow functions</h2>
 					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
-						( params ) => { statements }
+( params ) => { statements }
             
-            const name = ( params ) => { statements }
+const name = ( params ) => { statements }
 					</code></pre>
 				</section>
         
         <section data-auto-animate>
 					<h2 data-id="code-title">Arrow functions</h2>
 					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
-						(req, res) => {
-		          res.statusCode = 200
-		          res.setHeader('Content-Type', 'text/html')
-		          res.end(data)
-	          }
+(req, res) => {
+	res.statusCode = 200
+	res.setHeader('Content-Type', 'text/html')
+	res.end(data)
+}
 					</code></pre>
 				</section>
         
         <section data-auto-animate>
 					<h2 data-id="code-title">Arrow functions</h2>
 					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
-						const server = http.createServer((req, res) => {
-		          res.statusCode = 200
-		          res.setHeader('Content-Type', 'text/html')
-		          res.end(data)
-	          })
+const server = http.createServer((req, res) => {
+	res.statusCode = 200
+	res.setHeader('Content-Type', 'text/html')
+	res.end(data)
+})
 					</code></pre>
 				</section>
         
