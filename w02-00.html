@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>HTTP Headers</title>
+
+		<meta name="description" content="Node.js">
+		<meta name="author" content="John D. Martin III">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>HTTP Headers</h2>
+					<h3>
+						COMP 426 w02.00
+					</h3>	
+				
+				</section>
+        
+        <section>
+					<h2></h2>
+					<ol>
+						<li>Running JS in a command terminal</li>
+						<li>Structuring an NPM package</li>
+						<li>Node console.log()</li>
+						<li>Scripting and dependencies</li>
+						<li>const</li>
+						<li>Arrow functions</li>
+					</ol>
+				</section>
+        
+        <section data-auto-animate>
+					<h2 data-id="code-title">Hello, world.</h2>
+					<pre data-id="code-animation"><code class="bash" data-trim data-line-numbers>
+$ node -e 'console.log("Hello, world.")
+'Hello, world.
+					</code></pre>
+				</section>
+        
+        <section data-auto-animate>
+					<h2 data-id="code-title">Hello, world.</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+const hello = "Hello, world."
+console.log(hello)
+					</code></pre>
+				</section>
+        
+        <section data-auto-animate>
+					<h2 data-id="code-title">package.json</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+{
+	"name": "my-own-private-web-server",
+        "version": "0.0.1",
+        "description": "This package contains a very simple web server that takes one argument for port and then serves index.html in the www directory.",
+        "main": "server.js",
+        "scripts": {
+              "test": "node server.js",
+              "start": "node server.js"
+        },
+        "author": "John D. Martin III",
+        "license": "GPL-3.0-or-later",
+        "dependencies": {
+            "minimist": "^1.2.5"
+        }
+}
+					</code></pre>
+				</section>
+        
+        <section data-auto-animate>
+					<h2 data-id="code-title">const</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+const http = require('http')
+const fs = require('fs')
+const args = require('minimist')(process.argv.slice(2))
+					</code></pre>
+				</section>
+        
+        <section data-auto-animate>
+					<h2 data-id="code-title">Arrow functions</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+( params ) => { statements }
+            
+const name = ( params ) => { statements }
+					</code></pre>
+				</section>
+        
+        <section data-auto-animate>
+					<h2 data-id="code-title">Arrow functions</h2>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+
+					</code></pre>
+				</section>
+        
+        <section data-auto-animate background="https://jvns.ca/images/curl.jpeg">
+          
+				</section>
+        
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+		<script>
+			Reveal.initialize();
+      plugins: [ RevealMarkdown ]
+			const loadScript = src => {
+				return new Promise((resolve, reject) => {
+						const script = document.createElement('script');
+						script.type = 'text/javascript';
+						script.onload = resolve;
+						script.onerror = reject;
+						script.src = src;
+						document.head.append(script);
+				})
+			}
+
+			loadScript( 'plugin/highlight/highlight.js' ).then(() => {
+				Reveal.registerPlugin( RevealHighlight )
+			})
+		</script>
+
+	</body>
+</html>
