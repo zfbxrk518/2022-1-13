@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Scripting and Testing</title>
+
+		<meta name="description" content="Node.js">
+		<meta name="author" content="John D. Martin III">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-image="./headers.png" data-background-position="left" data-background-opacity="0.25">
+					<h2>Scripting and Testing</h2>
+					<h3>
+						COMP 426 w02.01
+					</h3>	
+				</section>
+        		<section>
+						<h2>Agenda</h2>
+						<ol>
+							<li>Thinking: developing v. programming v. coding</li>
+							<li>Designing tests</li>
+							<li>npm helper scripts</li>
+							<li>How to know what you are looking for</li>
+							<li>WTF is the autograder and how does it work?</li>
+						</ol>
+				</section>
+        
+				<section>
+          <section>
+					  <h2 data-id="code-title">How do we think?</h2>
+          </section>
+          <section>
+					  <h2 data-id="code-title">How do coders think?</h2>
+          </section>
+          <section>
+					  <h2 data-id="code-title">How do programmers think?</h2>
+          </section>
+          <section>
+					  <h2 data-id="code-title">How do developers think?</h2>
+          </section>
+				</section>
+        
+        <section data-background-iframe="https://www.basicbooks.com/titles/james-l-adams/conceptual-blockbusting/9781541674042/" data-background-interactive>
+				</section>
+        
+        <section>
+					<h2 data-id="code-title">Designing tests</h2>
+				</section>
+        
+        		<section data-auto-animate>
+					<h2 data-id="code-title">Status Codes</h2>
+					<pre data-id="code-animation"><code data-trim>
+  "scripts": {
+    "test": "????????????????????",
+    "start": "node server.js"
+  },
+					</code></pre>
+				</section>
+        
+				<section>
+          <section>
+					  <h2 data-id="code-title">What to look for?</h2>
+          </section>
+          <section>
+					  <h2 data-id="code-title">What are the possible interactions?</h2>
+          </section>
+          <section>
+					  <h2 data-id="code-title">What are we expecting to happen?</h2>
+          </section>
+          <section>
+					  <h2 data-id="code-title">What if something fails?</h2>
+          </section>
+				</section>
+        
+        <section>
+					<h2 data-id="code-title">WTF, autograder?</h2>
+				</section>
+
+				<section data-auto-animate>
+						<a href="https://code.johndmart.in" target="_blank">Demo</a>
+				</section>
+        
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script>
+			Reveal.initialize();
+			const loadScript = src => {
+				return new Promise((resolve, reject) => {
+						const script = document.createElement('script');
+						script.type = 'text/javascript';
+						script.onload = resolve;
+						script.onerror = reject;
+						script.src = src;
+						document.head.append(script);
+				})
+			}
+
+			loadScript( 'plugin/highlight/highlight.js' ).then(() => {
+				Reveal.registerPlugin( RevealHighlight )
+			})
+		</script>
+
+	</body>
+</html>
