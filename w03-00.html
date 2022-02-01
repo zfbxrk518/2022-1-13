@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Functions and evolution</title>
+
+		<meta name="description" content="Functions in JavaScript ES6 and TypeScript">
+		<meta name="author" content="John D. Martin III">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-image="./functions.png" data-background-position="left" data-background-opacity="0.25">
+					<h2>Functions and Evolution</h2>
+					<h3>
+						COMP 426 w03.00
+					</h3>	
+				</section>
+        		<section>
+						<h2>Agenda</h2>
+						<ol>
+							<li>Evolution</li>
+							<li>Old school JS v. modern JS</li>
+							<li>Functions using different mechanisms</li>
+						</ol>
+				</section>
+        
+          <section>
+					  <h2 data-id="code-title">Evolution from 1995 to present</h2>
+          </section>
+          <section data-background-image="https://miro.medium.com/max/890/1*tOpeQXW36hEFiV8THpYUzA.png" data-background-position="center" data-background-size="contain" data-background-color="#ffffff">
+          </section>
+        <section>
+          <section>
+					  <h2 data-id="code-title">Anonymous Function</h2>
+					  <pre data-id="code-animation"><code data-trim>
+let name = function(param) {
+    return param;
+}
+					</code></pre>
+          </section>
+          <section>
+					  <h2 data-id="code-title">Arrow Function</h2>
+<pre data-id="code-animation"><code data-trim>
+let name = (param) => param
+					</code></pre>
+          </section>
+          <section>
+					  <h2 data-id="code-title">Named Function</h2>
+					  <pre data-id="code-animation"><code data-trim>
+function name(param) {
+    return param;
+}
+					</code></pre>
+          </section>
+				</section>
+
+				<section data-auto-animate data-background-image="./functions.png" data-background-position="left" data-background-opacity="0.25">
+						<a href="https://code.johndmart.in" target="_blank">Demo</a>
+				</section>
+        
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script>
+			Reveal.initialize();
+			const loadScript = src => {
+				return new Promise((resolve, reject) => {
+						const script = document.createElement('script');
+						script.type = 'text/javascript';
+						script.onload = resolve;
+						script.onerror = reject;
+						script.src = src;
+						document.head.append(script);
+				})
+			}
+
+			loadScript( 'plugin/highlight/highlight.js' ).then(() => {
+				Reveal.registerPlugin( RevealHighlight )
+			})
+		</script>
+
+	</body>
+</html>
