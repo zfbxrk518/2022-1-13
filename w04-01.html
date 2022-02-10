@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>REST</title>
+
+		<meta name="description" content="API Overview">
+		<meta name="author" content="John D. Martin III">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-image="./api.png" data-background-position="left" data-background-opacity="0.25">
+					<h2>API Overview</h2>
+					<h3>
+						COMP 426 w04.01
+					</h3>	
+				</section>
+        		<section data-background-color="">
+						<h2>Agenda</h2>
+						<ol>
+						  <li>REST API</li>
+						  <li>Why REST?</li>
+						  <li>Constraints</li>
+							<li>Resources</li>
+							<li>How do we interact with a REST API?</li>
+							<li>Methods</li>
+							<li>Alternatives?</li>
+						</ol>
+				</section>
+        
+        <section data-background-color="">
+          <section data-background-color="#4287f5">
+					  <h2 data-id="code-title">REST</h2>
+          </section>
+          <section data-background-color="#3873d1">
+					  <h2 data-id="code-title"><em>RE</em><span style="color:#aaa">presentational</span> <em>S</em><span style="color:#aaa">tate</span> <em>T</em><span style="color:#aaa">ransfer</span></h2>
+          </section>
+				</section>
+				
+        <section data-background-color="">
+          <section data-background-color="#49018c">
+					  <h2 data-id="code-title">RESTful constraints</h2>
+          </section>
+          <section data-background-color="#60018c">
+					  <h2 data-id="code-title">Uniform interface</h2>
+          </section>
+          <section data-background-color="#7c018c">
+					  <h2 data-id="code-title">Client <=> Server</h2>
+          </section>
+          <section data-background-color="#8c0181">
+					  <h2 data-id="code-title">Stateless</h2>
+          </section>
+          <section data-background-color="#8c0167">
+					  <h2 data-id="code-title">Cacheable</h2>
+          </section>
+          <section data-background-color="#8c0139">
+					  <h2 data-id="code-title">Layered system</h2>
+          </section>
+          <section data-background-color="#8c010f">
+					  <h2 data-id="code-title">Code-on-demand</h2>
+          </section>
+				</section>
+				
+				<section data-background-color="">
+          <section data-background-color="">
+					  <h2 data-id="code-title">Data elements</h2>
+          </section>
+
+          <section data-background-color="">
+					  <h2 data-id="code-title">Resources and messages</h2>
+					  <p>Me, your instructor</p>
+          </section>
+
+          <section data-background-color="">
+					  <h2 data-id="code-title">Resource identifier</h2>
+          <pre data-id="code-animation"><code data-trim>
+Uniform Resource Identifier (URI): John D. Martin III
+Uniform Resource Locator (URL): https://johndmart.in
+          </code></pre>
+          </section>
+
+          <section data-background-color="">
+					  <h2 data-id="code-title">Representation</h2>
+					  <img src="./john_face.jpg" alt="Picture of John wearing a UNC baseball cap backwards and a black cloth mask inside a car, looking away from the camera" style="border-radius: 50%">
+          </section>
+
+          <section data-background-color="">
+					  <h2 data-id="code-title">Representation metadata</h2>
+          <pre data-id="code-animation"><code>
+<img src="./john_face.jpg" alt="Picture of John wearing a UNC baseball cap backwards and a black cloth mask inside a car, looking away from the camera">
+          </code></pre>
+          </section>
+
+          <section data-background-color="">
+					<h2 data-id="code-title">Representation metadata</h2>
+          <pre data-id="code-animation"><code>
+alt="Picture of John wearing a UNC baseball cap backwards and a black cloth mask inside a car, looking away from the camera"
+          </code></pre>
+          <pre data-id="code-animation"><code data-trim>
+$ ls -lah john_face.jpg
+-rw-r--r-- 1 john john 34K Feb 10 11:31 john_face.jpg
+          </code></pre>
+   
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">Resource metadata</h2>
+          <pre data-id="code-animation"><code data-trim>
+Created: 1980-09-05T00:35:00-5:00
+Last major update: 2021-09-05T00:35:00-5:00
+Origin: 43.0125°,-83.6875°
+Current: 35.9049°,-79.0469°
+          </code></pre>
+          </section>
+
+          <section data-background-color="">
+					  <h2 data-id="code-title">Control data</h2>
+					  <pre data-id="code-animation"><code data-trim>
+Cacheable: true
+In-cache: true
+            </code></pre>
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">Message: JSON</h2>
+					    <pre data-id="code-animation"><code data-trim>
+{
+  "uri": "John D. Martin III",
+  "url": "https://johndmart.in",
+  "image": {
+    "url": "./john_face.jpg",
+    "modified": "2022-02-10T11:31:00-5:00"
+  },
+  "location": {
+    "origin": [ "43.0125", "-83.6875" ],
+    "current": [ "35.9049", "-79.0469" ]
+  },
+  "version": {
+    "initial": [ "v0.0.0", "1980-09-05T00:35:00-5:00" ],
+    "major": [ "v41.0.0", "2021-09-05T00:35:00-5:00" ],
+    "current": [ "v41.5.5", "2022-02-10T00:35:00-5:00" ]
+  },
+  "cache": {
+    "cacheable": "true",
+    "in-cache": "true"
+  }
+}
+          </code></pre>
+          </section>
+				</section>
+				
+				<section data-background-color="">
+				  <section data-background-color="#fcba03">
+					  <h2 data-id="code-title">Methods</h2>
+						<ol>
+						  <li>Create</li>
+						  <li>Read</li>
+						  <li>Update</li>
+							<li>Delete</li>
+						</ol>
+          </section>
+          <section data-background-color="#0328fc">
+          <h2 data-id="code-title">HTTP Methods</h2>
+						<ol>
+						  <li>POST</li>
+						  <li>GET</li>
+						  <li>PUT</li>
+							<li>PATCH</li>
+							<li>DELETE</li>
+						</ol>
+          </section>
+          <section data-background-color="#018c1b">
+          <h2 data-id="code-title">Corresponding Methods</h2>
+						<ol>
+						  <li>POST == Create</li>
+						  <li>GET == Read</li>
+						  <li>PUT == Update (replace)</li>
+							<li>PATCH == Update (modify)</li>
+							<li>DELETE == Delete</li>
+						</ol>
+          </section>
+        </section>
+        
+        <section data-background-color="">
+          <section data-background-color="">
+					  <h2 data-id="code-title">Messages</h2>
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">GET URI</h2>
+					            <pre data-id="code-animation"><code data-trim>
+curl -X GET https://johndmart.in/some/api/endpoint/info/
+          </code></pre>
+          </section>
+          <section data-background-color="">
+          <h2 data-id="code-title">JSON Body</h2>
+					  <pre data-id="code-animation"><code data-trim>
+{
+  "uri": "John D. Martin III",
+  "url": "https://johndmart.in",
+  "image": {
+    "url": "./john_face.jpg",
+    "modified": "2022-02-10T11:31:00-5:00"
+  },
+  "location": {
+    "origin": [ "43.0125", "-83.6875" ],
+    "current": [ "35.9049", "-79.0469" ]
+  },
+  "version": {
+    "initial": [ "v0.0.0", "1980-08-10T00:35:00-5:00" ],
+    "major": [ "v41.0.0", "2021-08-10T00:35:00-5:00" ],
+    "current": [ "v41.6.0", "2022-02-10T00:35:00-5:00" ]
+  },
+  "cache": {
+    "cacheable": "true",
+    "in-cache": "true"
+  }
+}
+            </code></pre>
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">URL encoded Body</h2>
+ 					  <pre data-id="code-animation"><code data-trim>         
+https://johndmart.in/some/api/endpoint/?uri=John%20D.%20Martin%20III&
+url=http%3A%2F%2Fjohndmart.in&imgurl=.%2Fjohn_face.jpg&
+imgmodified=2022-02-10T11%3A31%3A00-5%3A00&
+originlat=43.0125&originlong=-83.6875&curlat=35.9049&
+curlong=-79.0469&versioninit=v0.0.0&
+timeinit=20221980-08-10T00%3A35%3A00-5%3A00&majorupdate=v41.0.0&
+timemaj=2021-09-05T00%3A35%3A00-5%3A00&cur=v41.5.5&
+timecur=2022-02-10T00%3A35%3A00-5%3A00&cacheable=true&cached=true
+            </code></pre>
+          </section>
+          <section data-background-color="">
+          <h2 data-id="code-title">POST URI</h2>
+ 					  <pre data-id="code-animation"><code data-trim>         
+curl -X POST -d "uri=John%20D.%20Martin%20III&
+url=http%3A%2F%2Fjohndmart.in&imgurl=.%2Fjohn_face.jpg
+&imgmodified=2022-02-10T11%3A31%3A00-5%3A00" 
+https://johndmart.in/some/api/endpoint/send/            
+            </code></pre>
+				  </section>
+				</section>
+				
+				<section data-background-color="#018c88">
+					  <h2 data-id="code-title">Alternatives?</h2>
+        </section>
+        
+        <section data-background-color="">
+          <section data-background-color="">
+					  <h2 data-id="code-title">SOAP</h2>
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">Simple Object Access Protocol</h2>
+					  <ol>
+					    <li>Strict standard</li>
+						  <li>XML only</li>
+						  <li>REST can use SOAP, but SOAP cannot use REST</li>
+						  <li>More complex to implement than REST</li>
+						  <li>Used for secure transactions</li>
+						  <li>Atomicity Consistency Isolation Durability (ACID) compliant</li>
+						  <li>Newer than REST (ca. mid-00s)</li>
+						</ol>
+					</section>
+          <section data-background-color="">
+					  <pre data-id="code-animation"><code data-trim>
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:m="http://www.example.org">
+  <soap:Header>
+  </soap:Header>
+  <soap:Body>
+    <m:GetInfo>
+      <m:ResourceName>John D. Martin III</m:ResourceName>
+    </m:GetInfo>
+  </soap:Body>
+</soap:Envelope>
+            </code></pre>
+          </section>
+        </section>
+        
+        <section data-background-color="">
+          <section data-background-color="">
+					  <h2 data-id="code-title">GraphQL</h2>
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">Graph Query Language</h2>
+					  <ol>
+						  <li>Data-oriented</li>
+						  <li>Very specific</li>
+						  <li>No waste</li>
+						  <li>New school (2015)</li>
+						</ol>
+					</section>
+          <section data-background-color="">
+          <h2 data-id="code-title">REST: get user name</h2>
+					  <pre data-id="code-animation">REST: get user name<code data-trim>
+GET /users/123
+/**
+{
+  "id": "123",
+  "name": "John D. Martin III",
+  "birthdate": "1980-08-10",
+  "location": {
+    "city": "Chapel Hill",
+    "state": "North Carolina",
+    "country": "United States of America"
+  }
+}
+*/
+            </code></pre>
+          </section>
+          <section data-background-color="">
+          <h2 data-id="code-title">GraphQL: get user name</h2>
+					  <pre data-id="code-animation"><code data-trim>
+query {
+  User (id: "123"){
+    name
+  }
+}
+            </code></pre>
+          </section>
+        </section>
+        
+        <section data-background-color="">
+          <section data-background-color="">
+					  <h2 data-id="code-title">RPC</h2>
+          </section>
+          <section data-background-color="">
+					  <h2 data-id="code-title">Remote Procedure Call</h2>
+					  <ol>
+					    <li>Request <=> Response</li>
+						  <li>Execute remote server code as if local</li>
+						  <li>Client agnostic of code location</li>
+						  <li>Action-oriented</li>
+						  <li>Old school (ca. 1981, but conceptually older)
+						</ol>
+          </section>
+        </section>
+     
+
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script>
+			Reveal.initialize();
+			const loadScript = src => {
+				return new Promise((resolve, reject) => {
+						const script = document.createElement('script');
+						script.type = 'text/javascript';
+						script.onload = resolve;
+						script.onerror = reject;
+						script.src = src;
+						document.head.append(script);
+				})
+			}
+
+			loadScript( 'plugin/highlight/highlight.js' ).then(() => {
+				Reveal.registerPlugin( RevealHighlight )
+			})
+		</script>
+
+	</body>
+</html>
