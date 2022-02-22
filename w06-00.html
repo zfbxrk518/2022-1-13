@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>w06.00 Body variables and middleware</title>
+
+		<link rel="stylesheet" href="./dist/reveal.css">
+		<link rel="stylesheet" href="./dist/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="./plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+                <!-- Use external markdown resource, separate slides by three newlines; vertical slides by two newlines 
+                <section data-markdown="markdown.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+                <!-- Slides are separated by three dashes (the default) 
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Demo 1
+                        Slide 1
+                        ---
+                        ## Demo 1
+                        Slide 2
+                        ---
+                        ## Demo 1
+                        Slide 3
+                    </script>
+                </section>
+
+                <!-- Slides are separated by regexp matching newline + three dashes + newline, vertical slides identical but two dashes -->
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+# API middleware
+## COMP 426 w06.00
+
+---
+
+## Agenda
+1. Questions about a99
+2. Review endpoints
+3. Middleware
+4. Request body
+
+---
+
+## a99
+?????
+
+---
+
+## Endpoints
+
+--
+
+```
+app.get( '/app', (req, res) => {
+  // insert magic here
+});
+```
+
+--
+
+```
+app.get( '/app', (req, res) => {
+    var flip = coinFlip()
+    res.status(200).json({ 'flip' : flip })
+});
+```
+
+--
+
+```
+app.get( '/app', (req, res) => {
+    res.status(200).json({ 'message': req.params.number })
+});
+```
+
+---
+
+## Middleware
+
+```
+app.get( '/app/flip/number',
+  (req, res, next) => {
+    console.log(req.params.number+ ' requested at ' +req.requestTime)
+    next()
+  }, 
+  (req, res) => {
+    res.status(200).json({ 'message': req.params.number })
+  }
+);
+```
+
+--
+
+```
+const logging = (req, res, next) => {
+  console.log(req.params.number+ ' requested at ' +req.requestTime)
+  next()
+}
+
+app.use(logging)
+
+app.get( '/app/flip/:number',
+  (req, res, next) => {
+    
+  }, 
+  (req, res) => {
+    res.status(200).json({ 'message': req.params.number })
+  }
+);
+```
+
+---
+
+## Request body v. query
+
+--
+
+# req.body (json)
+
+```
+{"guess":"heads"}
+```
+
+--
+
+# curl req.body (json)
+
+```
+curl -X GET -H 'Content-Type: application/json' -d '{"guess":"heads"}' http://localhost:5000
+```
+
+--
+
+# req.body (URL-encoded)
+
+```
+guess=heads
+```
+
+--
+
+# curl req.body (URL-encoded)
+
+```
+curl -X GET -H 'Content-Type: application/json' -d 'guess=heads' http://localhost:5000
+```
+
+--
+
+## curl req.query
+
+```
+curl -X GET http://localhost:5000/app/flip/call?guess=heads
+```
+
+---
+
+[DEMO](https://code.johndmart.in)
+
+                    </script>
+                </section>
+
+                <!-- No "extra" slides, since the separator can't be matched ("---" will become horizontal rulers) 
+                <section data-markdown data-separator="$x">
+                    <script type="text/template">
+                        A
+
+                        ---
+
+                        B
+
+                        ---
+
+                        C
+                    </script>
+                </section>
+                -->
+
+                <!-- Slide attributes 
+                <section data-markdown>
+                    <script type="text/template">
+                        <!-- .slide: data-background="#000000" 
+                        ## Slide attributes
+                    </script>
+                </section>
+                
+                <!-- Element attributes
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Element attributes
+                        - Item 1 <!-- .element: class="fragment" data-fragment-index="2" 
+                        - Item 2 <!-- .element: class="fragment" data-fragment-index="1" 
+                    </script>
+                </section>
+                -->
+                <!-- Code 
+                <section data-markdown>
+                    <script type="text/template">
+                        ```php [1|3-5]
+                        public function foo()
+                        {
+                            $foo = array(
+                                'bar' => 'bar'
+                            )
+                        }
+                        ```
+                    </script>
+                </section>
+                -->
+                <!-- Images 
+                <section data-markdown>
+                    <script type="text/template">
+                        ![Sample image](https://s3.amazonaws.com/static.slid.es/logo/v2/slides-symbol-512x512.png)
+                    </script>
+                </section>
+                -->
+
+                <!-- Math 
+                <section data-markdown>
+					## The Lorenz Equations
+					`\[\begin{aligned}
+					\dot{x} &amp; = \sigma(y-x) \\
+					\dot{y} &amp; = \rho x - y - xz \\
+					\dot{z} &amp; = -\beta z + xy
+					\end{aligned} \]`
+                </section>
+                -->
+
+            </div>
+		</div>
+
+		<script src="./dist/reveal.js"></script>
+        <script src="./plugin/markdown/markdown.js"></script>
+        <script src="./plugin/highlight/highlight.js"></script>
+        <script src="./plugin/notes/notes.js"></script>
+        <script src="./plugin/math/math.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+
+		</script>
+
+	</body>
+</html>
