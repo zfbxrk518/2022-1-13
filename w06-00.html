@@ -69,7 +69,7 @@ app.get( '/app', (req, res) => {
 --
 
 ```
-app.get( '/app', (req, res) => {
+app.get( '/app/flip', (req, res) => {
     var flip = coinFlip()
     res.status(200).json({ 'flip' : flip })
 });
@@ -78,7 +78,7 @@ app.get( '/app', (req, res) => {
 --
 
 ```
-app.get( '/app', (req, res) => {
+app.get( '/app/echo/:number', (req, res) => {
     res.status(200).json({ 'message': req.params.number })
 });
 ```
@@ -88,7 +88,7 @@ app.get( '/app', (req, res) => {
 ## Middleware
 
 ```
-app.get( '/app/flip/number',
+app.get( '/app/echo/:number',
   (req, res, next) => {
     console.log(req.params.number+ ' requested at ' +req.requestTime)
     next()
@@ -109,7 +109,7 @@ const logging = (req, res, next) => {
 
 app.use(logging)
 
-app.get( '/app/flip/:number',
+app.get( '/app/echo/:number',
   (req, res, next) => {
     
   }, 
@@ -152,7 +152,7 @@ guess=heads
 # curl req.body (URL-encoded)
 
 ```
-curl -X GET -H 'Content-Type: application/json' -d 'guess=heads' http://localhost:5000
+curl -X GET -d 'guess=heads' http://localhost:5000
 ```
 
 --
