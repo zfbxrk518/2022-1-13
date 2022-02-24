@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>w06.00 Logs</title>
+
+		<link rel="stylesheet" href="./dist/reveal.css">
+		<link rel="stylesheet" href="./dist/theme/white.css" id="theme">
+
+    <link rel="stylesheet" href="./plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+                <!-- Use external markdown resource, separate slides by three newlines; vertical slides by two newlines 
+                <section data-markdown="markdown.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+                <!-- Slides are separated by three dashes (the default) 
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Demo 1
+                        Slide 1
+                        ---
+                        ## Demo 1
+                        Slide 2
+                        ---
+                        ## Demo 1
+                        Slide 3
+                    </script>
+                </section>
+
+                <!-- Slides are separated by regexp matching newline + three dashes + newline, vertical slides identical but two dashes -->
+                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+# API middleware
+## COMP 426 w06.00
+
+---
+
+## Agenda
+1. RegEx
+2. How to use regex?
+3. What are logs?
+4. Why log?
+5. What to log?
+
+---
+
+## regex
+
+--
+
+## REGular EXpressions
+
+--
+
+### Express endpoints
+
+```
+app.get('/app/some/endpoint/:choice(one|two|three)/', (req, res) => {
+    console.log(req.params.choice)
+})
+```
+
+--
+
+### Express endpoints
+
+```
+app.get('/app/some/endpoint/:number([0-9][0-9])/', (req, res) => {
+    console.log(req.params.number)
+})
+```
+---
+
+[Regular Expressions 101](https://regex101.com)
+
+--
+
+[Regex Crossword](https://regexcrossword.com)
+
+---
+
+[DEMO](https://code.johndmart.in)
+
+---
+
+## Logs
+
+--
+
+```
+$ cat coinflip.log
+125.125.125.125 - - [2/Feb/2022:15:35:46 -0500] "GET /app/flip/ HTTP/1.0" 200 1043
+```
+
+```
+$ cat coinflip.log
+IPaddress user-identifier username strftime[%d/%b/%Y:%H:%M:%S %z] "request" status size(bytes)
+```
+---
+
+## Log levels
+
+--
+
+1. Trace
+2. Debug
+3. Info
+4. Warn
+5. Error
+6. Fatal
+
+---
+
+```
+const logging = (req, res, next) => {
+  console.log(???????????)
+  next()
+}
+
+app.use(logging)
+
+app.get( '/app/echo/:number',
+  (req, res, next) => {
+    
+  }, 
+  (req, res) => {
+    res.status(200).json({ 'message': req.params.number })
+  }
+);
+```
+
+---
+
+[DEMO](https://code.johndmart.in)
+
+                    </script>
+                </section>
+
+                <!-- No "extra" slides, since the separator can't be matched ("---" will become horizontal rulers) 
+                <section data-markdown data-separator="$x">
+                    <script type="text/template">
+                        A
+
+                        ---
+
+                        B
+
+                        ---
+
+                        C
+                    </script>
+                </section>
+                -->
+
+                <!-- Slide attributes 
+                <section data-markdown>
+                    <script type="text/template">
+                        <!-- .slide: data-background="#000000" 
+                        ## Slide attributes
+                    </script>
+                </section>
+                
+                <!-- Element attributes
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Element attributes
+                        - Item 1 <!-- .element: class="fragment" data-fragment-index="2" 
+                        - Item 2 <!-- .element: class="fragment" data-fragment-index="1" 
+                    </script>
+                </section>
+                -->
+                <!-- Code 
+                <section data-markdown>
+                    <script type="text/template">
+                        ```php [1|3-5]
+                        public function foo()
+                        {
+                            $foo = array(
+                                'bar' => 'bar'
+                            )
+                        }
+                        ```
+                    </script>
+                </section>
+                -->
+                <!-- Images 
+                <section data-markdown>
+                    <script type="text/template">
+                        ![Sample image](https://s3.amazonaws.com/static.slid.es/logo/v2/slides-symbol-512x512.png)
+                    </script>
+                </section>
+                -->
+
+                <!-- Math 
+                <section data-markdown>
+					## The Lorenz Equations
+					`\[\begin{aligned}
+					\dot{x} &amp; = \sigma(y-x) \\
+					\dot{y} &amp; = \rho x - y - xz \\
+					\dot{z} &amp; = -\beta z + xy
+					\end{aligned} \]`
+                </section>
+                -->
+
+            </div>
+		</div>
+
+		<script src="./dist/reveal.js"></script>
+        <script src="./plugin/markdown/markdown.js"></script>
+        <script src="./plugin/highlight/highlight.js"></script>
+        <script src="./plugin/notes/notes.js"></script>
+        <script src="./plugin/math/math.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+
+		</script>
+
+	</body>
+</html>
